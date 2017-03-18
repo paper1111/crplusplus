@@ -181,10 +181,6 @@ def chgrp?(d)
   !File.grpowned?(d)
 end
 
-# Invalidate sudo timestamp before exiting (if it wasn't active before).
-Kernel.system "/usr/bin/sudo -n -v 2>/dev/null"
-at_exit { Kernel.system "/usr/bin/sudo", "-k" } unless $?.success?
-
 # The block form of Dir.chdir fails later if Dir.CWD doesn't exist which I
 # guess is fair enough. Also sudo prints a warning message for no good reason
 Dir.chdir "/usr"
@@ -252,7 +248,7 @@ unless mkdirs.empty?
   puts(*mkdirs)
 end
 
-wait_for_user if STDIN.tty? && !ENV["TRAVIS"]
+#wait_for_user if STDIN.tty? && !ENV["TRAVIS"]
 
 if File.directory? HOMEBREW_PREFIX
   sudo "/bin/chmod", "u+rwx", *chmods unless chmods.empty?
