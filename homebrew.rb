@@ -21,6 +21,12 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
 THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+============================
+=========IMPORTANT==========
+============================
+This version of the script does not call sudo, and should not be run unless
+using applescript and using "with administrator privileges"
 =end
 #!/System/Library/Frameworks/Ruby.framework/Versions/Current/usr/bin/ruby
 # This script installs to /usr/local only. To install elsewhere you can just
@@ -251,50 +257,50 @@ end
 #wait_for_user if STDIN.tty? && !ENV["TRAVIS"]
 
 if File.directory? HOMEBREW_PREFIX
-  sudo "/bin/chmod", "u+rwx", *chmods unless chmods.empty?
-  sudo "/bin/chmod", "g+rwx", *group_chmods unless group_chmods.empty?
-  sudo "/bin/chmod", "755", *user_chmods unless user_chmods.empty?
-  sudo "/usr/sbin/chown", ENV["USER"], *chowns unless chowns.empty?
-  sudo "/usr/bin/chgrp", "admin", *chgrps unless chgrps.empty?
+  "/bin/chmod", "u+rwx", *chmods unless chmods.empty?
+  "/bin/chmod", "g+rwx", *group_chmods unless group_chmods.empty?
+  "/bin/chmod", "755", *user_chmods unless user_chmods.empty?
+  "/usr/sbin/chown", ENV["USER"], *chowns unless chowns.empty?
+  "/usr/bin/chgrp", "admin", *chgrps unless chgrps.empty?
 else
-  sudo "/bin/mkdir", "-p", HOMEBREW_PREFIX
-  sudo "/usr/sbin/chown", "root:wheel", HOMEBREW_PREFIX
+  "/bin/mkdir", "-p", HOMEBREW_PREFIX
+  "/usr/sbin/chown", "root:wheel", HOMEBREW_PREFIX
 end
 
 unless mkdirs.empty?
-  sudo "/bin/mkdir", "-p", *mkdirs
-  sudo "/bin/chmod", "g+rwx", *mkdirs
-  sudo "/bin/chmod", "755", *zsh_dirs
-  sudo "/usr/sbin/chown", ENV["USER"], *mkdirs
-  sudo "/usr/bin/chgrp", "admin", *mkdirs
+  "/bin/mkdir", "-p", *mkdirs
+  "/bin/chmod", "g+rwx", *mkdirs
+  "/bin/chmod", "755", *zsh_dirs
+  "/usr/sbin/chown", ENV["USER"], *mkdirs
+  "/usr/bin/chgrp", "admin", *mkdirs
 end
 
 [HOMEBREW_CACHE, HOMEBREW_OLD_CACHE].each do |cache|
-  sudo "/bin/mkdir", "-p", cache unless File.directory? cache
-  sudo "/bin/chmod", "g+rwx", cache if chmod? cache
-  sudo "/usr/sbin/chown", ENV["USER"], cache if chown? cache
-  sudo "/usr/bin/chgrp", "admin", cache if chgrp? cache
+  "/bin/mkdir", "-p", cache unless File.directory? cache
+  "/bin/chmod", "g+rwx", cache if chmod? cache
+  "/usr/sbin/chown", ENV["USER"], cache if chown? cache
+  "/usr/bin/chgrp", "admin", cache if chgrp? cache
 end
 
 if should_install_command_line_tools?
   ohai "Searching online for the Command Line Tools"
   # This temporary file prompts the 'softwareupdate' utility to list the Command Line Tools
   clt_placeholder = "/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
-  sudo "/usr/bin/touch", clt_placeholder
+  "/usr/bin/touch", clt_placeholder
   clt_label = `softwareupdate -l | grep -B 1 -E "Command Line (Developer|Tools)" | awk -F"*" '/^ +\\*/ {print $2}' | sed 's/^ *//' | tail -n1`.chomp
-  ohai "Installing #{clt_label}"
-  sudo "/usr/sbin/softwareupdate", "-i", clt_label
-  sudo "/bin/rm", "-f", clt_placeholder
-  sudo "/usr/bin/xcode-select", "--switch", "/Library/Developer/CommandLineTools"
+  "Installing #{clt_label}"
+  "/usr/sbin/softwareupdate", "-i", clt_label
+  "/bin/rm", "-f", clt_placeholder
+  "/usr/bin/xcode-select", "--switch", "/Library/Developer/CommandLineTools"
 end
 
 # Headless install may have failed, so fallback to original 'xcode-select' method
 if should_install_command_line_tools? && STDIN.tty?
   ohai "Installing the Command Line Tools (expect a GUI popup):"
-  sudo "/usr/bin/xcode-select", "--install"
+  "/usr/bin/xcode-select", "--install"
   puts "Press any key when the installation has completed."
   getc
-  sudo "/usr/bin/xcode-select", "--switch", "/Library/Developer/CommandLineTools"
+  "/usr/bin/xcode-select", "--switch", "/Library/Developer/CommandLineTools"
 end
 
 abort <<-EOABORT if `/usr/bin/xcrun clang 2>&1` =~ /license/ && !$?.success?
