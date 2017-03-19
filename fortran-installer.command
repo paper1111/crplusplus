@@ -1,3 +1,4 @@
 #!/usr/bin/bash
 
-curl 
+curl "" -o ""
+
