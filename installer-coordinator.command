@@ -16,10 +16,17 @@
 
 
 cd ../..
+cd Library
+mkdir crplusplus
+cd ..
 curl "https://raw.githubusercontent.com/paper1111/crplusplus-installer/master/homebrew-fetch.command" -o "/Library/crplusplus/homebrew-fetch.command"
 curl "https://raw.githubusercontent.com/paper1111/crplusplus-installer/master/go-installer.command" -o "/Library/crplusplus/go-install.command"
 
 osascript <<'ENDASCRIPT'
-do shell script "/Library/crplusplus/installer.command" with administrator privileges
+do shell script "/Library/crplusplus/homebrew-fetch.command" with administrator privileges
 log "done!"
+do shell script "/Library/crplusplus/go-installer.command"
+log "installing mono..."
+do shell script "brew install mono"
+log "finished installing mono!"
 ENDASCRIPT
