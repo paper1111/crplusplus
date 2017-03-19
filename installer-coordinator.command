@@ -29,4 +29,7 @@ do shell script "/Library/crplusplus/go-installer.command"
 log "installing mono..."
 do shell script "brew install mono"
 log "finished installing mono!"
+log "installing clisp..."
+do shell script "brew install clisp"
+log "finished installing clisp!"
 ENDASCRIPT
