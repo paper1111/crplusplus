@@ -20,3 +20,8 @@ echo "  CCCCCC  R    R       ++           ++"
 ${reset}
 
 echo "${boldblue}Installing Homebrew...${reset}
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+echo "${boldblue}Done!${reset}"
+echo "${boldblue}Checking for problems...${reset}"
+brew doctor
+echo "${boldblue}Done!${reset}"
