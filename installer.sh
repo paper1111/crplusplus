@@ -5,7 +5,7 @@ underline=$(tput sgr 0 1)          # Underline
 bold=$(tput bold)             # Bold
 boldred=${bold}$(tput setaf 1) #  red
 boldblue=${bold}$(tput setaf 4) #  blue
-boldwhite=${bold}$(tput setaf 7) #  white
+boldlimeyellow=${bold}$(tput setaf 190) #  lime yellow
 boldgreen=${bold}$(tput setaf 2) # green
 reset=$(tput sgr0)             # Reset
 
@@ -24,4 +24,18 @@ echo "${boldblue}Installing Homebrew...${reset}
 echo "${boldblue}Done!${reset}"
 echo "${boldblue}Checking for problems...${reset}"
 brew doctor
-echo "${boldblue}Done!${reset}"
+echo "${boldlimeyellow}Done!${reset}"
+
+echo "${boldblue}Installing go with homebrew...${reset}"
+brew install go --cross-compile-common
+
+echo "${boldblue}Finished, now initalizing parts for gc...${reset}"
+mkdir $HOME/go
+export GOPATH=$HOME/go
+
+open $HOME/.bash_profile
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+echo "${boldlimeyellow}Finished installing Go!${reset}"
