@@ -45,3 +45,12 @@ echo "${boldblue}Finished installing Clisp!${reset}"
 echo "${boldblue}Installing mono with homebrew...${reset}"
 brew install mono
 echo "${boldblue}Finished installing mono!"
+
+echo "${boldblue}Installing Fortran... (gfortran)"
+echo "Downlaoding..."
+curl "http://prdownloads.sourceforge.net/hpc/gfortran-6.3-bin.tar.gz" -o "gfortran-6.3-bin.tar.gz"
+echo "Unzipping..."
+gunzip gcc-6.2-bin.tar.gz
+sudo tar -xvf gcc-6.2-bin.tar -C
+echo "${boldblue}Finished installing Fortran!"
+
