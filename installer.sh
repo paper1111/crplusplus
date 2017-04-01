@@ -37,3 +37,11 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 echo "${boldlimeyellow}Finished installing Go!${reset}"
+
+echo "${boldblue}Installing Clisp with homebrew...${reset}"
+brew install clisp
+echo "${boldblue}Finished installing Clisp!${reset}"
+
+echo "${boldblue}Installing mono with homebrew...${reset}"
+brew install mono
+echo "${boldblue}Finished installing mono!"
