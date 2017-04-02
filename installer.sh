@@ -70,10 +70,18 @@ echo "${boldblue}Finished installing mono!"
 echo "${boldblue}Installing Fortran... (gfortran)"
 echo "Downlaoding..."
 curl "http://prdownloads.sourceforge.net/hpc/gfortran-6.3-bin.tar.gz" -o "gfortran-6.3-bin.tar.gz"
-echo "Unzipping..."
-gunzip gcc-6.2-bin.tar.gz
-sudo tar -xvf gcc-6.2-bin.tar -C
-echo "${boldblue}Finished installing Fortran!"
+echo "Checking md5 hash..."
+formd5=$(md5 -q gfortran-6.3-bin.tar.gz)
+if [ "$formd" == "1f1cb148167b8c622d54c031b5dac73a" ]; then
+	echo "Unzipping..."
+	gunzip gcc-6.2-bin.tar.gz
+	sudo tar -xvf gcc-6.2-bin.tar -C
+	echo "${boldblue}Finished installing Fortran!"
+else
+	echo $rmd5
+	echo "${boldred}MD5 hash is invalid, skipping installation, please manually install Fortran!${reset}"
+  	skipped+=("Fortran")
+fi
 
 echo "${boldblue}Installing D...${reset}"
 curl -fsS https://dlang.org/install.sh | bash -s dmd
@@ -105,13 +113,13 @@ rmd5=$(md5 -q R-3.3.3.pkg)
 if [ "$rmd5" == "893ba010f303e666e19f86e4800f1fbf" ]; then
 	echo $rmd5
 	echo "MD5 check valid"
-  sudo installer -pkg R-3.3.3.pkg -target /
+  	sudo installer -pkg R-3.3.3.pkg -target /
+	echo "${boldblue}Finished insatlling R!${reset}"
 else
 	echo $rmd5
 	echo "${boldred}MD5 hash is invalid, skipping installation, please manually install R!${reset}"
   	skipped+=("R")
 fi
-echo "${boldblue}Finished insatlling R!${reset}"
 
 echo "${boldblue}Installing Dart...${reset}"
 brew tap dart-lang/dart
