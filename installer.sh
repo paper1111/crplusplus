@@ -61,3 +61,7 @@ echo "${boldblue}Finished installing D!${reset}"
 echo "${boldblue}Installing COBOL (GNU COBOL / Open COBOL)...${reset}"
 brew install gnu-cobol
 echo "${boldblue}Finsihed installing COBOL!${reset}"
+
+echo "${boldblue}Installing Crystal...${reset}"
+brew install crystal-lang
+echo "${boldblue}Finished installing Crystal!${reset}"
