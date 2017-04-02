@@ -61,9 +61,18 @@ else
        skipped+=("Go")
 fi
 
-echo "${boldblue}Installing Clisp with homebrew...${reset}"
-brew install clisp
-echo "${boldblue}Finished installing Clisp!${reset}"
+echo "${boldblue}Installing Clisp from source...${reset}"
+echo "Downloading..."
+curl "http://ftp.gnu.org/pub/gnu/clisp/release/latest/clisp-2.49.tar.bz2" -o "clisp-2.49.tar.bz2"
+echo "Unpacking..."
+tar xvjf clisp-2.49.tar.bz2
+cd clisp-2.49.tar.bz2
+./configure
+echo "Compiling..."
+make
+echo "Installing..."
+sudo make install
+echo "${boldblue}Succesfully installed Clisp${reset}
 
 echo "${boldblue}Installing mono with homebrew...${reset}"
 brew install mono
