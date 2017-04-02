@@ -45,19 +45,21 @@ echo "${boldlimeyellow}Done!${reset}"
 ######## compiled languages ########
 echo "${boldgreen}Installing compilers...${reset}"
 
-echo "${boldblue}Installing go with homebrew...${reset}"
-brew install go --cross-compile-common
-
-echo "${boldblue}Finished, now initalizing parts for gc...${reset}"
-mkdir $HOME/go
-export GOPATH=$HOME/go
-
-open $HOME/.bash_profile
-
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
-
-echo "${boldlimeyellow}Finished installing Go!${reset}"
+echo "${boldblue}Installing Go...${reset}"
+echo "Downloading pkg file..."
+curl "https://storage.googleapis.com/golang/go1.8.darwin-amd64.pkg" -o "go1.8.darwin-amd64.pkg"
+echo "Checking MD5 hash..."
+gosha256=$(sha -a 256 go1.8.darwin-amd64.pkg)
+if [ $gosha256 == "f9d511eb88baecf8a2e3457bf85eaae73dfb7cade4dd4eaba744947efea586e1" ]; then
+       echo "SHA256 of file is $gosha256, validation succeeded"
+       echo "Installing..."
+       sudo installer -pkg go1.8.darwin-amd64.pkg -target /
+       echo "Installed Go!"
+else
+       echo "SHA256 of file is $gosha256"
+       echo "${boldred}SHA is incorrect, skipping installation, please install Go manually!"
+       skipped+=("Go")
+fi
 
 echo "${boldblue}Installing Clisp with homebrew...${reset}"
 brew install clisp
