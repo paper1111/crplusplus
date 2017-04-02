@@ -65,3 +65,7 @@ echo "${boldblue}Finsihed installing COBOL!${reset}"
 echo "${boldblue}Installing Crystal...${reset}"
 brew install crystal-lang
 echo "${boldblue}Finished installing Crystal!${reset}"
+
+echo "${boldblue}Installing Rust...${reset}"
+curl https://sh.rustup.rs -sSf | sh
+echo "${boldblue}Finished installing Rust!${reset}
