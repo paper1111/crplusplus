@@ -56,4 +56,8 @@ echo "${boldblue}Finished installing Fortran!"
 
 echo "${boldblue}Installing D...${reset}"
 curl -fsS https://dlang.org/install.sh | bash -s dmd
-echo "${boldblue}Finished installing D${reset}!"
+echo "${boldblue}Finished installing D!${reset}"
+
+echo "${boldblue}Installing COBOL (GNU COBOL / Open COBOL)...${reset}"
+brew install gnu-cobol
+echo "${boldblue}Finsihed installing COBOL!${reset}"
