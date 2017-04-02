@@ -24,6 +24,9 @@ boldlimeyellow=${bold}$(tput setaf 190) #  lime yellow
 boldgreen=${bold}$(tput setaf 2) # green
 reset=$(tput sgr0)             # Reset
 
+# initalization
+skipped=()
+
 echo "${boldgreen}Welcome to the Compiler++ installer!${reset}"
 
 echo "${bold}  CCCCCC  RRRRR        ++           ++${reset}"
@@ -94,3 +97,17 @@ echo "${boldgreen}Installing non-compiled languages...${reset}"
 echo "${boldblue}Installing Python 3...${reset}"
 brew install python3
 echo "${boldblue}Finished installing Python!${reset}"
+
+echo "${boldblue}Installing R...${reset}"
+curl "https://cran.r-project.org/bin/macosx/R-3.3.3.pkg" -o "R-3.3.3.pkg"
+echo "Checking md5 hash..."
+rmd5=$(md5 -q R-3.3.3.pkg)
+if [ "$rmd5" == "893ba010f303e666e19f86e4800f1fbf" ]; then
+	echo $rmd5
+	echo "MD5 check valid"
+  sudo installer -pkg R-3.3.3.pkg -target /
+else
+	echo $rmd5
+	echo "${boldred}MD5 hash is invalid, skipping installation, please manually install R!${reset}"
+  skipped+=("R")
+fi
