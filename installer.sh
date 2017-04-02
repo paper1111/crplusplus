@@ -76,6 +76,7 @@ echo "${boldblue}Succesfully installed Clisp${reset}
 
 echo "${boldblue}Installing mono with homebrew...${reset}"
 brew install mono
+curl "https://download.mono-project.com/archive/4.8.0/macos-10-universal/MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg" -o "MonoF
 echo "${boldblue}Finished installing mono!"
 
 echo "${boldblue}Installing Fortran... (gfortran)"
