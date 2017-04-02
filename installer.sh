@@ -72,13 +72,15 @@ echo "Downlaoding..."
 curl "http://prdownloads.sourceforge.net/hpc/gfortran-6.3-bin.tar.gz" -o "gfortran-6.3-bin.tar.gz"
 echo "Checking md5 hash..."
 formd5=$(md5 -q gfortran-6.3-bin.tar.gz)
-if [ "$formd" == "1f1cb148167b8c622d54c031b5dac73a" ]; then
+if [ "$formd5" == "1f1cb148167b8c622d54c031b5dac73a" ]; then
+	echo $formd5
+	echo "MD5 hash is valid!"
 	echo "Unzipping..."
 	gunzip gcc-6.2-bin.tar.gz
 	sudo tar -xvf gcc-6.2-bin.tar -C
 	echo "${boldblue}Finished installing Fortran!"
 else
-	echo $rmd5
+	echo $formd5
 	echo "${boldred}MD5 hash is invalid, skipping installation, please manually install Fortran!${reset}"
   	skipped+=("Fortran")
 fi
