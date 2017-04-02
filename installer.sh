@@ -24,6 +24,9 @@ echo "${boldblue}Checking for problems...${reset}"
 brew doctor
 echo "${boldlimeyellow}Done!${reset}"
 
+######## compiled languages ########
+echo "${boldgreen}Installing compilers...${reset}"
+
 echo "${boldblue}Installing go with homebrew...${reset}"
 brew install go --cross-compile-common
 
@@ -68,4 +71,11 @@ echo "${boldblue}Finished installing Crystal!${reset}"
 
 echo "${boldblue}Installing Rust...${reset}"
 curl https://sh.rustup.rs -sSf | sh
-echo "${boldblue}Finished installing Rust!${reset}
+echo "${boldblue}Finished installing Rust!${reset}"
+
+######## interpreted languages ########
+echo "${boldgreen}Installing non-compiled languages...${reset}"
+
+echo "${boldblue}Installing Python 3...${reset}"
+brew install python3
+echo "${boldblue}Finished installing Python!${reset}"
