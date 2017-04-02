@@ -109,5 +109,11 @@ if [ "$rmd5" == "893ba010f303e666e19f86e4800f1fbf" ]; then
 else
 	echo $rmd5
 	echo "${boldred}MD5 hash is invalid, skipping installation, please manually install R!${reset}"
-  skipped+=("R")
+  	skipped+=("R")
 fi
+echo "${boldblue}Finished insatlling R!${reset}"
+
+echo "${boldblue}Installing Dart...${reset}"
+brew tap dart-lang/dart
+brew install dart --with-content-shell --with-dartium
+echo "${boldblue}Finished installing Dart!${reset}
