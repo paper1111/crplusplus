@@ -72,7 +72,7 @@ echo "Downlaoding..."
 curl "http://prdownloads.sourceforge.net/hpc/gfortran-6.3-bin.tar.gz" -o "gfortran-6.3-bin.tar.gz"
 echo "Checking md5 hash..."
 formd5=$(md5 -q gfortran-6.3-bin.tar.gz)
-if [ "$formd5" == "1f1cb148167b8c622d54c031b5dac73a" ]; then
+if [ "$formd5" == "4e0ff4c3c4ec144c484d190a85cea271" ]; then
 	echo $formd5
 	echo "MD5 hash is valid!"
 	echo "Unzipping..."
