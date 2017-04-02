@@ -76,8 +76,8 @@ if [ "$formd5" == "4e0ff4c3c4ec144c484d190a85cea271" ]; then
 	echo $formd5
 	echo "MD5 hash is valid!"
 	echo "Unzipping..."
-	gunzip gcc-6.2-bin.tar.gz
-	sudo tar -xvf gcc-6.2-bin.tar -C
+	gunzip gfortran-6.2-bin.tar.gz
+	sudo tar -xvf gfortran-6.2-bin.tar -C /
 	echo "${boldblue}Finished installing Fortran!"
 else
 	echo $formd5
