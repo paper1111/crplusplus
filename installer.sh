@@ -108,8 +108,13 @@ echo "Installing"
 curl "https://nchc.dl.sourceforge.net/project/open-cobol/gnu-cobol/2.0/gnu-cobol-2.0_rc-2.tar.gz" -o "gnu-cobol-2.0_rc-2.tar.gz"
 echo "Decompressing tarball..."
 tar xvzf gnu-cobol-2.0_rc-2.tar.gz
-echo "Installing"
-echo "${boldblue}Finsihed installing COBOL!${reset}"
+cd gnu-cobol-2.0_rc-2
+./configure
+echo "Compiling..."
+make
+echo "Installing..."
+sudo make install
+echo "${boldblue}Finished installing COBOL!${reset}"
 
 echo "${boldblue}Installing Crystal...${reset}"
 brew install crystal-lang
