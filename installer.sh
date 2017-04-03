@@ -26,6 +26,10 @@ reset=$(tput sgr0)             # Reset
 
 # initalization
 skipped=()
+cd
+cd ../../Library
+mkdir compiler-plus-plus
+cd
 
 echo "${boldgreen}Welcome to the Compiler++ installer!${reset}"
 
@@ -117,7 +121,13 @@ sudo make install
 echo "${boldblue}Finished installing COBOL!${reset}"
 
 echo "${boldblue}Installing Crystal...${reset}"
-brew install crystal-lang
+cd
+echo "Downloading tarball..."
+curl "https://github.com/crystal-lang/crystal/releases/download/0.21.1/crystal-0.21.1-1-darwin-x86_64.tar.gz" -o "crystal-0.21.1-1-darwin-x86_64.tar.gz"
+echo "Unpacking..."
+tar xvzf crystal-0.21.1-1-darwin-x86_64.tar.gz
+echo "Moving directories..."
+mv crystal-0.21.1-1-darwin-x86_64/bin/crystal ../../usr/bin/local
 echo "${boldblue}Finished installing Crystal!${reset}"
 
 echo "${boldblue}Installing Rust...${reset}"
