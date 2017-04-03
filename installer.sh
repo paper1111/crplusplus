@@ -103,8 +103,9 @@ echo "${boldblue}Installing D...${reset}"
 curl -fsS https://dlang.org/install.sh | bash -s dmd
 echo "${boldblue}Finished installing D!${reset}"
 
-echo "${boldblue}Installing COBOL (GNU COBOL / Open COBOL)...${reset}"
-brew install gnu-cobol
+echo "${boldblue}Installing COBOL from source (GNU COBOL / Open COBOL)...${reset}"
+
+curl "https://nchc.dl.sourceforge.net/project/open-cobol/gnu-cobol/2.0/gnu-cobol-2.0_rc-2.tar.gz" -o "gnu-cobol-2.0_rc-2.tar.gz"
 echo "${boldblue}Finsihed installing COBOL!${reset}"
 
 echo "${boldblue}Installing Crystal...${reset}"
