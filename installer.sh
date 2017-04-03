@@ -138,7 +138,10 @@ echo "${boldblue}Finished installing Rust!${reset}"
 echo "${boldgreen}Installing non-compiled languages...${reset}"
 
 echo "${boldblue}Installing Python 3...${reset}"
-brew install python3
+echo "Downloading..."
+curl "https://www.python.org/ftp/python/3.6.1/python-3.6.1-macosx10.6.pkg" -o "python-3.6.1-macosx10.6.pkg"
+echo "Installing..."
+sudo installer -pkg python-3.6.1-macosx10.6.pkg
 echo "${boldblue}Finished installing Python!${reset}"
 
 echo "${boldblue}Installing R...${reset}"
