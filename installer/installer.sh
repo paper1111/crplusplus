@@ -158,8 +158,3 @@ else
 	echo "${boldred}MD5 hash is invalid, skipping installation, please manually install R!${reset}"
   	skipped+=("R")
 fi
-
-echo "${boldblue}Installing Dart...${reset}"
-brew tap dart-lang/dart
-brew install dart --with-content-shell --with-dartium
-echo "${boldblue}Finished installing Dart!${reset}
