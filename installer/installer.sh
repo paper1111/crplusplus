@@ -151,3 +151,16 @@ else
 	echo "${boldred}MD5 hash is invalid, skipping installation, please manually install R!${reset}"
   	skipped+=("R")
 fi
+
+##### main command #####
+echo "${boldblue}Installing main scripts...${reset}"
+cd
+echo "Downloading scripts..."
+curl "https://raw.githubusercontent.com/paper1111/crplusplus/master/src/crpp.rb" -o "../../usr/local/bin/crpp"
+cd ../../usr/local/bin/
+echo "Changing permissions..."
+chmod +x crpp
+echo "${boldblue}Done!${reset}"
+
+#### Ending ####
+echo "${boldlimeyellow}Finished installing Compiler++!${reset}"
