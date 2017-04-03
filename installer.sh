@@ -72,11 +72,13 @@ echo "Compiling..."
 make
 echo "Installing..."
 sudo make install
-echo "${boldblue}Succesfully installed Clisp${reset}
+echo "${boldblue}Succesfully installed Clisp${reset}"
 
-echo "${boldblue}Installing mono with homebrew...${reset}"
-brew install mono
-curl "https://download.mono-project.com/archive/4.8.0/macos-10-universal/MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg" -o "MonoF
+echo "${boldblue}Installing mono...${reset}"
+echo "Downloading..."
+curl "https://download.mono-project.com/archive/4.8.0/macos-10-universal/MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg" -o "MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg"
+echo "Installing..."
+sudo installer -pkg MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg
 echo "${boldblue}Finished installing mono!"
 
 echo "${boldblue}Installing Fortran... (gfortran)"
