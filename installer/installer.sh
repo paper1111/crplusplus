@@ -47,7 +47,7 @@ echo "Downloading pkg file..."
 curl "https://storage.googleapis.com/golang/go1.8.darwin-amd64.pkg" -o "go1.8.darwin-amd64.pkg"
 echo "Checking SHA256..."
 gosha256=$(shasum -a 256 go1.8.darwin-amd64.pkg)
-if [ "$gosha256" == "f9d511eb88baecf8a2e3457bf85eaae73dfb7cade4dd4eaba744947efea586e1" ]; then
+if [ "${gosha256:-0}" == "f9d511eb88baecf8a2e3457bf85eaae73dfb7cade4dd4eaba744947efea586e1" ]; then
        echo "SHA256 of file is $gosha256, validation succeeded"
        echo "Installing..."
        sudo installer -pkg go1.8.darwin-amd64.pkg -target /
