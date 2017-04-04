@@ -74,6 +74,7 @@ echo "${boldblue}Successfully installed Fortran!${reset}"
 
 echo "${boldblue}Installing D...${reset}"
 curl -fsS https://dlang.org/install.sh | bash -s dmd
+echo "Activating..."
 source ~/dlang/dmd-2.073.2/activate
 echo "${boldblue}Finished installing D!${reset}"
 
