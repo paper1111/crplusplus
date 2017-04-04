@@ -45,8 +45,8 @@ echo "${boldgreen}Installing compilers...${reset}"
 echo "${boldblue}Installing Go...${reset}"
 echo "Downloading pkg file..."
 curl "https://storage.googleapis.com/golang/go1.8.darwin-amd64.pkg" -o "go1.8.darwin-amd64.pkg"
-echo "Checking MD5 hash..."
-gosha256=$(sha -a 256 go1.8.darwin-amd64.pkg)
+echo "Checking SHA256..."
+gosha256=$(shasum -a 256 go1.8.darwin-amd64.pkg)
 if [ $gosha256 == "f9d511eb88baecf8a2e3457bf85eaae73dfb7cade4dd4eaba744947efea586e1" ]; then
        echo "SHA256 of file is $gosha256, validation succeeded"
        echo "Installing..."
@@ -57,19 +57,6 @@ else
        echo "${boldred}SHA is incorrect, skipping installation, please install Go manually!"
        skipped+=("Go")
 fi
-
-echo "${boldblue}Installing Clisp from source...${reset}"
-echo "Downloading..."
-curl "http://ftp.gnu.org/pub/gnu/clisp/release/latest/clisp-2.49.tar.bz2" -o "clisp-2.49.tar.bz2"
-echo "Unpacking..."
-tar xvjf clisp-2.49.tar.bz2
-cd clisp-2.49.tar.bz2
-./configure
-echo "Compiling..."
-make
-echo "Installing..."
-sudo make install
-echo "${boldblue}Succesfully installed Clisp${reset}"
 
 echo "${boldblue}Installing mono...${reset}"
 echo "Downloading..."
@@ -99,19 +86,6 @@ fi
 echo "${boldblue}Installing D...${reset}"
 curl -fsS https://dlang.org/install.sh | bash -s dmd
 echo "${boldblue}Finished installing D!${reset}"
-
-echo "${boldblue}Installing COBOL from source (GNU COBOL / Open COBOL)...${reset}"
-echo "Installing"
-curl "https://nchc.dl.sourceforge.net/project/open-cobol/gnu-cobol/2.0/gnu-cobol-2.0_rc-2.tar.gz" -o "gnu-cobol-2.0_rc-2.tar.gz"
-echo "Decompressing tarball..."
-tar xvzf gnu-cobol-2.0_rc-2.tar.gz
-cd gnu-cobol-2.0_rc-2
-./configure
-echo "Compiling..."
-make
-echo "Installing..."
-sudo make install
-echo "${boldblue}Finished installing COBOL!${reset}"
 
 echo "${boldblue}Installing Crystal...${reset}"
 cd
