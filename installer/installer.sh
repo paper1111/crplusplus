@@ -139,7 +139,7 @@ fi
 echo "${boldblue}Installing main scripts...${reset}"
 cd
 echo "Downloading scripts..."
-curl "https://raw.githubusercontent.com/paper1111/crplusplus/master/src/crpp.rb" -o "../../usr/local/bin/crpp"
+sudo curl "https://raw.githubusercontent.com/paper1111/crplusplus/master/src/crpp.rb" -o "../../usr/local/bin/crpp"
 cd ../../usr/local/bin/
 echo "Changing permissions..."
 chmod +x crpp
