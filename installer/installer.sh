@@ -64,7 +64,7 @@ echo "${boldblue}Installing Fortran... (gfortran)${reset}"
 echo "Downloading..."
 curl "http://coudert.name/software/gfortran-6.3-Sierra.dmg" -o "gfortran-6.3-Sierra.dmg"
 echo "Attaching..."
-hdutil attach gfortran-6.3-Sierra.dmg
+hdiutil attach gfortran-6.3-Sierra.dmg
 echo "Installing..."
 sudo installer -pkg /Volumes/gfortran-6.3-Sierra/gfortran.pkg -target /
 echo "Cleaning up..."
