@@ -47,14 +47,14 @@ echo "Downloading pkg file..."
 curl "https://storage.googleapis.com/golang/go1.8.darwin-amd64.pkg" -o "go1.8.darwin-amd64.pkg"
 echo "Checking SHA256..."
 gosha256=$(shasum -a 256 go1.8.darwin-amd64.pkg)
-if [ "${gosha256:-0}" == "f9d511eb88baecf8a2e3457bf85eaae73dfb7cade4dd4eaba744947efea586e1" ]; then
+if [ "$gosha256" == "f9d511eb88baecf8a2e3457bf85eaae73dfb7cade4dd4eaba744947efea586e1" ]; then
        echo "SHA256 of file is $gosha256, validation succeeded"
        echo "Installing..."
        sudo installer -pkg go1.8.darwin-amd64.pkg -target /
        echo "${boldblue}Installed Go!${reset}"
 else
        echo "SHA256 of file is $gosha256"
-       echo "${boldred}SHA is incorrect, skipping installation, please install Go manually!"
+       echo "${boldred}SHA is incorrect, skipping installation, please install Go manually!${reset}"
        skipped+=("Go")
 fi
 echo "Cleaning up..."
@@ -69,7 +69,7 @@ echo "Cleaning up..."
 rm -rf MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg
 echo "${boldblue}Finished installing mono!"
 
-echo "${boldblue}Installing Fortran... (gfortran)"
+echo "${boldblue}Installing Fortran... (gfortran)${reset}"
 echo "Downloading..."
 curl "http://coudert.name/software/gfortran-6.3-Sierra.dmg" -o "gfortran-6.3-Sierra.dmg"
 echo "Attaching..."
