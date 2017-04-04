@@ -47,7 +47,7 @@ echo "Downloading pkg file..."
 curl "https://storage.googleapis.com/golang/go1.8.darwin-amd64.pkg" -o "go1.8.darwin-amd64.pkg"
 echo "Checking SHA256..."
 gosha256=$(shasum -a 256 go1.8.darwin-amd64.pkg)
-if [ "$gosha256" == "f9d511eb88baecf8a2e3457bf85eaae73dfb7cade4dd4eaba744947efea586e1" ]; then
+if [ "$gosha256" == "f9d511eb88baecf8a2e3457bf85eaae73dfb7cade4dd4eaba744947efea586e1 go1.8.darwin-amd64.pkg" ]; then
        echo "SHA256 of file is $gosha256, validation succeeded"
        echo "Installing..."
        sudo installer -pkg go1.8.darwin-amd64.pkg -target /
@@ -64,10 +64,10 @@ echo "${boldblue}Installing mono...${reset}"
 echo "Downloading..."
 curl "https://download.mono-project.com/archive/4.8.0/macos-10-universal/MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg" -o "MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg"
 echo "Installing..."
-sudo installer -pkg MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg
+sudo installer -pkg MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg -target /
 echo "Cleaning up..."
 rm -rf MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg
-echo "${boldblue}Finished installing mono!"
+echo "${boldblue}Finished installing mono!${reset}"
 
 echo "${boldblue}Installing Fortran... (gfortran)${reset}"
 echo "Downloading..."
