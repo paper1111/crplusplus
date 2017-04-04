@@ -28,7 +28,7 @@ reset=$(tput sgr0)             # Reset
 skipped=()
 cd
 cd ../../Library
-mkdir compiler-plus-plus
+sudo mkdir compiler-plus-plus
 cd
 
 echo "${boldgreen}Welcome to the Compiler++ installer!${reset}"
