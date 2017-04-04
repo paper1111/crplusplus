@@ -102,6 +102,18 @@ curl https://sh.rustup.rs -sSf | sh
 echo "${boldblue}Finished installing Rust!${reset}"
 cd
 
+echo "${boldblue}Installing Java...${reset}"
+echo "Downloading..."
+curl -v -j -k -L -H "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-macosx-x64.dmg > jdk-8u121-macosx-x64.dmg
+echo "Attaching..."
+hdiutil attach jdk-8u121-macosx-x64.dmg
+echo "Installing..."
+sudo installer -pkg /Volumes/JDK\ 8\ Update\ 121/JDK\ 8\ Update\ 121.pkg -target /
+echo "Cleaning up..."
+diskutil umount /Volumes/JDK\ 8\ Update\ 121
+rm jdk-8u121-macosx-x64.dmg
+echo "${boldblue}Finished installing Java!${reset}"
+
 ######## interpreted languages ########
 echo "${boldgreen}Installing non-compiled languages...${reset}"
 
