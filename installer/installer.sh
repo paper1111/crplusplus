@@ -45,20 +45,11 @@ echo "${boldgreen}Installing compilers...${reset}"
 echo "${boldblue}Installing Go...${reset}"
 echo "Downloading pkg file..."
 curl "https://storage.googleapis.com/golang/go1.8.darwin-amd64.pkg" -o "go1.8.darwin-amd64.pkg"
-echo "Checking SHA256..."
-gosha256=$(shasum -a 256 go1.8.darwin-amd64.pkg)
-if [ "$gosha256" == "f9d511eb88baecf8a2e3457bf85eaae73dfb7cade4dd4eaba744947efea586e1 go1.8.darwin-amd64.pkg" ]; then
-       echo "SHA256 of file is $gosha256, validation succeeded"
-       echo "Installing..."
-       sudo installer -pkg go1.8.darwin-amd64.pkg -target /
-       echo "${boldblue}Installed Go!${reset}"
-else
-       echo "SHA256 of file is $gosha256"
-       echo "${boldred}SHA is incorrect, skipping installation, please install Go manually!${reset}"
-       skipped+=("Go")
-fi
+echo "Installing..."
+sudo installer -pkg go1.8.darwin-amd64.pkg -target /
 echo "Cleaning up..."
 rm -rf go1.8.darwin-amd64.pkg
+echo "${boldblue}Installed Go!${reset}"
 
 echo "${boldblue}Installing mono...${reset}"
 echo "Downloading..."
