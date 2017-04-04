@@ -51,37 +51,35 @@ if [ $gosha256 == "f9d511eb88baecf8a2e3457bf85eaae73dfb7cade4dd4eaba744947efea58
        echo "SHA256 of file is $gosha256, validation succeeded"
        echo "Installing..."
        sudo installer -pkg go1.8.darwin-amd64.pkg -target /
-       echo "Installed Go!"
+       echo "${boldblue}Installed Go!${reset}"
 else
        echo "SHA256 of file is $gosha256"
        echo "${boldred}SHA is incorrect, skipping installation, please install Go manually!"
        skipped+=("Go")
 fi
+echo "Cleaning up..."
+rm -rf go1.8.darwin-amd64.pkg
 
 echo "${boldblue}Installing mono...${reset}"
 echo "Downloading..."
 curl "https://download.mono-project.com/archive/4.8.0/macos-10-universal/MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg" -o "MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg"
 echo "Installing..."
 sudo installer -pkg MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg
+echo "Cleaning up..."
+rm -rf MonoFramework-MDK-4.8.0.520.macos10.xamarin.universal.pkg
 echo "${boldblue}Finished installing mono!"
 
 echo "${boldblue}Installing Fortran... (gfortran)"
-echo "Downlaoding..."
-curl "http://prdownloads.sourceforge.net/hpc/gfortran-6.3-bin.tar.gz" -o "gfortran-6.3-bin.tar.gz"
-echo "Checking md5 hash..."
-formd5=$(md5 -q gfortran-6.3-bin.tar.gz)
-if [ "$formd5" == "4e0ff4c3c4ec144c484d190a85cea271" ]; then
-	echo $formd5
-	echo "MD5 hash is valid!"
-	echo "Unzipping..."
-	gunzip gfortran-6.2-bin.tar.gz
-	sudo tar -xvf gfortran-6.2-bin.tar -C /
-	echo "${boldblue}Finished installing Fortran!"
-else
-	echo $formd5
-	echo "${boldred}MD5 hash is invalid, skipping installation, please manually install Fortran!${reset}"
-  	skipped+=("Fortran")
-fi
+echo "Downloading..."
+curl "http://coudert.name/software/gfortran-6.3-Sierra.dmg" -o "gfortran-6.3-Sierra.dmg"
+echo "Attaching..."
+hdutil attach gfortran-6.3-Sierra.dmg
+echo "Installing..."
+sudo installer -pkg /Volumes/gfortran-6.3-Sierra/gfortran.pkg -target /
+echo "Cleaning up..."
+diskutil unmount /Volumes/gfortran-6.3-Sierra
+rm gfortran-6.3-Sierra.dmg
+echo "${boldblue}Successfully installed Fortran!${reset}"
 
 echo "${boldblue}Installing D...${reset}"
 curl -fsS https://dlang.org/install.sh | bash -s dmd
@@ -95,11 +93,14 @@ echo "Unpacking..."
 tar xvzf crystal-0.21.1-1-darwin-x86_64.tar.gz
 echo "Moving directories..."
 mv crystal-0.21.1-1-darwin-x86_64/bin/crystal ../../usr/bin/local
+echo "Cleaning up..."
+rm -rf crystal-0.21.1-1-darwin-x86_64
 echo "${boldblue}Finished installing Crystal!${reset}"
 
 echo "${boldblue}Installing Rust...${reset}"
 curl https://sh.rustup.rs -sSf | sh
 echo "${boldblue}Finished installing Rust!${reset}"
+cd
 
 ######## interpreted languages ########
 echo "${boldgreen}Installing non-compiled languages...${reset}"
@@ -108,7 +109,9 @@ echo "${boldblue}Installing Python 3...${reset}"
 echo "Downloading..."
 curl "https://www.python.org/ftp/python/3.6.1/python-3.6.1-macosx10.6.pkg" -o "python-3.6.1-macosx10.6.pkg"
 echo "Installing..."
-sudo installer -pkg python-3.6.1-macosx10.6.pkg
+sudo installer -pkg python-3.6.1-macosx10.6.pkg -target /
+echo "Cleaning up..."
+rm -rf python-3.6.1-macosx10.6.pkg
 echo "${boldblue}Finished installing Python!${reset}"
 
 echo "${boldblue}Installing R...${reset}"
@@ -119,6 +122,8 @@ if [ "$rmd5" == "893ba010f303e666e19f86e4800f1fbf" ]; then
 	echo $rmd5
 	echo "MD5 check valid"
   	sudo installer -pkg R-3.3.3.pkg -target /
+	echo "Cleaning up..."
+	rm -rf R-3.3.3.pkg
 	echo "${boldblue}Finished insatlling R!${reset}"
 else
 	echo $rmd5
@@ -134,6 +139,7 @@ curl "https://raw.githubusercontent.com/paper1111/crplusplus/master/src/crpp.rb"
 cd ../../usr/local/bin/
 echo "Changing permissions..."
 chmod +x crpp
+cd
 echo "${boldblue}Done!${reset}"
 
 #### Ending ####
